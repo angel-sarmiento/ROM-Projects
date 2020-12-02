@@ -4,6 +4,7 @@
 #!/usr/local/bin python3
 from generate_snapshots import *
 from compare_fom_rom import *
+from sklearn.metrics import mean_squared_error
 
 # from heat_snapshots.py
 U, S, V, snapshots_matrix  = heat_snapshots()
@@ -11,5 +12,6 @@ U, S, V, snapshots_matrix  = heat_snapshots()
 # from compare_FOM_ROM.py
 fom, rom, t_fom, t_rom = compare_FOM_ROM(phi)
 
-pd.DataFrame(snapshots_matrix).to_csv("snapshots.csv")
+pd.DataFrame(snapshots_matrix).to_csv("data/snapshots.csv")
+
 

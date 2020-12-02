@@ -33,7 +33,7 @@ data = pd.read_csv("data/heat_snapshots.csv", header = None)
 t_end = 1                 # Simulation time in seconds
 n = 129                   # Discretization in space
 nt = 129                  # time-step
-mu = 0.1                  # heat equation constant
+#mu = 0.1                  # heat equation constant
 
 dx = 1/n
 dt = t_end/nt
@@ -52,10 +52,13 @@ v[0] = 1
 U, S, V = np.linalg.svd(data, full_matrices=True)
 
 #New POD Basis
-phi = U[:, :1]
+phi = U[:, :4]
 
 # %% Function, compare_FOM_ROM
-def compare_FOM_ROM(phi):
+def compare_FOM_ROM(phi, mu):
+    #getting a value for mu 
+    mu = mu
+
     #Setting up u for both ROM and FOM
     u_FOM = u
     u_ROM = v
