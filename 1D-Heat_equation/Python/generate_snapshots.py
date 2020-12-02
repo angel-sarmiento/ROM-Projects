@@ -15,7 +15,8 @@ import pandas as pd
 #%% Defining the function
 
 def heat_snapshots():
-    snapshots_list = []
+    snapshots_matrix = pd.DataFrame()
+    
 
     t_end = 1                 # Simulation time in seconds
     n = 129                   # Discretization in space
@@ -51,26 +52,23 @@ def heat_snapshots():
         for j in range(nt):
             #time = j*dt
             #setting the right hand side
-            rhs = u[0:-1]                   # this is to not overwrite the boundary condition accidentally
+            rhs = u[1:len(u)]                   # this is to not overwrite the boundary condition accidentally
             rhs[0] = rhs[0] + m*u[0]        # fixing the first equation for the boundary condition
             
             u_new = sps.linalg.spsolve(A, rhs)    # getting the new rhs by solving A\b
 
-            u[0:-1] = u_new
+            u[1:len(u)] = u_new
             #u[-1] = u[-2]                  #This just fixes the Neumann Boundary condition if we wanted to plot
-            
-            #Creating a dataframe with the values to append later
-            df = pd.DataFrame(u[1:-1])
 
             # collecting the snapshots 
             if j % 5 == 0: 
-                snapshots_list += [df]
-
-    # computing the svd for the snapshots matrix and returning them 
-    snapshots_matrix = np.hstack(snapshots_list).transpose()
+                snapshots_matrix = pd.concat([snapshots_matrix, pd.DataFrame(u[0:-1])], axis = 1)
     
-    u, s, vh = np.linalg.svd(snapshots_matrix, full_matrices=True)    
-    return snapshots_matrix, u, s, vh, snapshots_list
+    # computing the svd for the snapshots matrix and returning them 
+    U, S, V = np.linalg.svd(snapshots_matrix, full_matrices=True)  
+
+    return snapshots_matrix, U, S, V
 
 
 #    return U, S, V, snapshots_matrix
+# %%
