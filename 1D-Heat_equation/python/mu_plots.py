@@ -64,7 +64,7 @@ animation.save('images/models.gif', dpi = 150)
 
 
 
-#%% Plotting the different Mu values in a 4 images
+#%% Plot 2
 
 
 
@@ -77,7 +77,7 @@ camera2 = Camera(fig2)
 for i in range(len(rom.columns) - 1):
     sns.set_style("white")
     sns.lineplot(data = fom_new[0].iloc[:,i], color = '#a9a9a9',ax = ax2, ci = None) # first dataset
-    sns.lineplot(data = rom_new[0].iloc[:,i], color = '#add8e6',ax = ax2, ci = None)
+    sns.lineplot(data = rom_new[0].iloc[:,i], color = '#CC0000',ax = ax2, ci = None)
     sns.despine()
     plt.legend(labels=['FOM', 'ROM'])
 
@@ -92,7 +92,7 @@ animation2 = camera2.animate(interval = 50)
 animation2.save('images/mu_plot_1.gif', dpi = 150)
 
 #----------------------------------------------------------------------------------------------------
-
+#%% Plot 3
 
 fig3, ax3 = plt.subplots(figsize = (8, 8))
 camera3 = Camera(fig3)
@@ -117,7 +117,7 @@ animation3 = camera3.animate(interval = 50)
 animation3.save('images/mu_plot_2.gif', dpi = 150) 
 
 #----------------------------------------------------------------------------------------------------
-
+#%% Plot 4
 fig4, ax4 = plt.subplots(figsize = (8, 8))
 camera4 = Camera(fig4)
 
