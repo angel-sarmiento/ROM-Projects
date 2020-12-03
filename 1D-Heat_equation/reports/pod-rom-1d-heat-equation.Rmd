@@ -6,6 +6,10 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+```{r, echo = FALSE, fig.align='center', out.height="60%", out.width="60%"}
+knitr::include_graphics("../python-scripts/images/models.gif")
 ```
 
