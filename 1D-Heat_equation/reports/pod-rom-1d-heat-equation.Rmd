@@ -1,0 +1,11 @@
+---
+title: "Model Order Reduction of the 1-Dimensional Heat Equation "
+author: "Angel Sarmiento - asarmiento6426@floridapoly.edu"
+date: "12/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
