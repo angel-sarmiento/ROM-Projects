@@ -45,7 +45,7 @@ t_saved = [t_fom - t_fom, t_fom - t_rom, t_fom_new[0] - t_rom_new[0], t_fom_new[
 
 # creating the comparison table and then exporting to csv
 comp_table = pd.DataFrame({'model': m_type, 'mu': m_mu, 'RMSE': m_error, 'time': m_cost, 'time_saved': t_saved})
-comp_table.to_csv('data/table.csv', index = False, encoding = 'utf-8')
+comp_table.to_csv('data/mu_tests_rom.csv', index = False, encoding = 'utf-8')
 
 
 # %% Comparing different POD bases 
