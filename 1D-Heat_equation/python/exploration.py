@@ -66,7 +66,7 @@ t_rom_npod = []
 #for loop to solve ROM and FOM with different POD bases
 for l in range(len(phi_new)):
 
-    fom_npod_it, rom_npod_it, t_fom_nit, t_rom_nit = compare_FOM_ROM(phi_new[l], mu=0.1)
+    fom_npod_it, rom_npod_it, t_fom_nit, t_rom_nit = compare_FOM_ROM(phi_new[l], mu_i=0.4)
 
     fom_npod.append(fom_npod_it)
     rom_npod.append(rom_npod_it)
@@ -95,6 +95,7 @@ bar_plot = sns.barplot(x="RMSE", y="model", hue = "n_dim", data=sub_table)
 plt.title("POD Bases Dimensions and Their Effect on Accuracy")
 plt.xlabel("RMSE")
 plt.ylabel("Model")
+sns.despine(bottom=True)
 
 bar_plot.get_figure().savefig('images/pod_bar.png')
 #%% animated plot of new POD bases

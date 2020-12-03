@@ -24,7 +24,7 @@ t_rom_npod = []
 #for loop to solve ROM and FOM with different POD bases
 for l in range(len(phi_new)):
 
-    fom_npod_it, rom_npod_it, t_fom_nit, t_rom_nit = compare_FOM_ROM(phi_new[l], mu=0.1)
+    fom_npod_it, rom_npod_it, t_fom_nit, t_rom_nit = compare_FOM_ROM(phi_new[l], mu_i=0.4)
 
     fom_npod.append(fom_npod_it)
     rom_npod.append(rom_npod_it)
@@ -47,7 +47,7 @@ for i in range(len(rom_npod[0].columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; # of Dimensions = ' + str((phi_new[0].shape)[1]),fontsize=16)
     camera.snap()
 
@@ -73,7 +73,7 @@ for i in range(len(rom_npod[0].columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; # of Dimensions = ' + str((phi_new[1].shape)[1]),fontsize=16)
     camera2.snap()
 
@@ -97,7 +97,7 @@ for i in range(len(rom_npod[0].columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; # of Dimensions = ' + str((phi_new[2].shape)[1]),fontsize=16)
     camera3.snap()
 
@@ -121,7 +121,7 @@ for i in range(len(rom_npod[0].columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; # of Dimensions = ' + str((phi_new[3].shape)[1]),fontsize=16)
     camera4.snap()
 

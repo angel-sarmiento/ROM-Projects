@@ -1,0 +1,17 @@
+---
+title: "Untitled"
+author: "Angel Sarmiento"
+date: "12/3/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+knitr::include_graphics(c('../python/images/mu_plot_1.gif',
+                        '../python/images/mu_plot_2.gif'))
+```
+

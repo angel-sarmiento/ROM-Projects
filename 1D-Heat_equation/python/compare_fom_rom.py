@@ -55,9 +55,9 @@ U, S, V = np.linalg.svd(data, full_matrices=True)
 phi = U[:, :4]
 
 # %% Function, compare_FOM_ROM
-def compare_FOM_ROM(phi, mu):
+def compare_FOM_ROM(phi, mu_i):
     #getting a value for mu 
-    mu = mu
+    mu = mu_i
 
     #Setting up u for both ROM and FOM
     u_FOM = u

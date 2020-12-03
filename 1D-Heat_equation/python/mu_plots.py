@@ -53,7 +53,7 @@ for i in range(len(rom.columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation',fontsize=16)
     camera.snap()
 
@@ -83,7 +83,7 @@ for i in range(len(rom.columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; mu = ' + str(mu_new[0]),fontsize=16)
     camera2.snap()
 
@@ -108,7 +108,7 @@ for i in range(len(rom.columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; mu = ' + str(mu_new[1]),fontsize=16)
     camera3.snap()
 
@@ -132,7 +132,7 @@ for i in range(len(rom.columns) - 1):
 
     plt.xlim(0, 130)
     plt.xlabel('x')
-    plt.ylabel('Heat Rate (u)')
+    plt.ylabel('Heat (u)')
     plt.title('ROM vs. FOM of the 1D Heat Equation; mu = ' + str(mu_new[2]),fontsize=16)
     camera4.snap()
 
