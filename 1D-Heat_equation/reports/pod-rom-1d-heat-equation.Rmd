@@ -64,7 +64,7 @@ where $\mu$ is known as the *diffusivity* of the medium. The boundary conditions
 
 |       Notice that this is a time-dependent Partial Differential Equation (PDE). In order to solve this, we implement a Backward in Time, Central in Space (BTCS) scheme for discretization. BTCS is chosen here since it is an implicit method without limitations on solutions like FTCS for stability. It also involves a smaller number of computations than the *Crank-Nicholson scheme*, making it simpler to program. For this investigation, importance is placed on the comparative advantage between two models, not on the accuracy of the numerical solution of the heat equation. The discretization is shown below:
 
-$$\frac{u_{i, n+1} - u_{i, n}}{\Delta t} = \alpha \frac{u_{i+1,n+1} - 2u_{i, n+1} + u_{i-1, n+1}}{(\Delta x)^2}$$
+$$\frac{u_{i, n} - u_{i, n-1}}{\Delta t} = \alpha \frac{u_{i-1,n} - 2u_{i, n} + u_{i+1, n}}{(\Delta x)^2}$$
 where $u_{i, n} \approx u(x_i, t_n)$. Simplified, this yields, 
 $$u_{i, n} = (1+2\lambda)u_{i, n+1} - \lambda(u_{i+1, n+1} + u_{i-1, n+1})$$
 for $i = 1, 2,..., M-1$ and for $n = 1, 2, ..., N$, Solving for the system each time. As stated above, this method is *unconditionally stable* and convenient for the purposes listed here. The code used to implement this is available [here](https://github.com/angel-sarmiento/ROM-Projects/blob/master/1D-Heat_equation/python/generate_snapshots.py)
