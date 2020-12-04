@@ -40,11 +40,21 @@ for j in range(len(mu_new)):
 # %% Comparing different mu values
 # gettting a neat table comparing everything
 m_type = ['FOM', 'ROM', 'ROM_2', 'ROM_3', 'ROM_4']
-m_error = [0, np.sqrt(mean_squared_error(fom, rom)), np.sqrt(mean_squared_error(fom_new[0], rom_new[0])), np.sqrt(mean_squared_error(fom_new[1], rom_new[1])), np.sqrt(mean_squared_error(fom_new[2], rom_new[2]))]
+m_error = [0, np.sqrt(mean_squared_error(fom, rom))] 
+#lambda function to get all of the respective RMSE values
+m_error.extend(map(lambda x, y: np.sqrt(mean_squared_error(x, y)), fom_new, rom_new))
+
+
 #mu values 
 m_mu = [mu, mu, mu_new[0], mu_new[1], mu_new[2]]
+
+#getting the time taken to run each model
 m_cost = [t_fom, t_rom, t_rom_new[0], t_rom_new[1], t_rom_new[2]]
-t_saved = [t_fom - t_fom, t_fom - t_rom, t_fom_new[0] - t_rom_new[0], t_fom_new[1] - t_rom_new[1], t_fom_new[2] - t_rom_new[2]]
+
+#time saved
+t_saved = [t_fom - t_fom, t_fom - t_rom]
+#lambda function to get the rest
+t_saved.extend(map(lambda x, y: x - y, t_fom_new, t_rom_new))
 
 # creating the comparison table and then exporting to csv
 comp_table = pd.DataFrame({'model': m_type, 'mu': m_mu, 'RMSE': m_error, 'time': m_cost, 'time_saved': t_saved})
@@ -80,14 +90,20 @@ for l in range(len(phi_new)):
 
 # %% Comparing different POD bases with a table
 m_type_p = ['FOM', 'ROM', 'ROM_2', 'ROM_3', 'ROM_4']
+
+
 # this gets the number of dimensions from each of the models in the list phi_new
-n_dim = [128, (phi_new[0].shape)[1], (phi_new[1].shape)[1], (phi_new[2].shape)[1], (phi_new[3].shape)[1]]
+n_dim = [128]
+# lambda function to get all of the dimensions through each 
+n_dim.extend(map(lambda x: x.shape[1], phi_new))
 
 #this of course gets the RMSE of each model 
-p_error = [0, np.sqrt(mean_squared_error(fom_npod[0], rom_npod[0])), np.sqrt(mean_squared_error(fom_npod[1], rom_npod[1])), np.sqrt(mean_squared_error(fom_npod[2], rom_npod[2])), np.sqrt(mean_squared_error(fom_npod[3], rom_npod[3]))]
+p_error = [0]
+p_error.extend(map(lambda x, y: np.sqrt(mean_squared_error(x, y)), fom_npod, rom_npod))
 
 # getting the time taken
-basis_time = [t_fom_npod[0], t_rom_npod[0], t_rom_npod[1], t_rom_npod[2], t_rom_npod[3]]
+basis_time = [t_fom_npod[0]]
+basis_time.extend(t_rom_npod)
 
 # creating the table, not creating the time elapsed this time
 pod_table = pd.DataFrame({'model': m_type_p, 'n_dim': n_dim, 'RMSE': p_error, 'time': basis_time})
@@ -107,5 +123,3 @@ plt.ylabel("Model")
 sns.despine(bottom=True)
 
 bar_plot.get_figure().savefig('images/pod_bar.png')
-#%% animated plot of new POD bases
-
