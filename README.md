@@ -7,7 +7,9 @@
 
 In this work is a view of a subject that is a bit of a passion of mine as of late. This subject is Model-Order Reduction and the application of this subject on the 1-Dimensional representation of the heat/diffusion equation. The primary methodology of this work is the creation of a reduced-basis representation of this equation, that is then mapped to the full order basis and displaying the metrics like accuracy and computation cost associated with this action. This report details the main ideas behind the mathematics involved in solving a time-depending partial differential equation, the mathematics involved in applying methods like the Proper Orthogonal Decomposition using the singular value decomposition on the resulting state vectors, and the resulting analyses done to understand relationships between parameter and reduced-order basis selection. The entire set of scripts are written in python with all of the code, images, and resulting snapshot matrix data available [here](https://github.com/angel-sarmiento/ROM-Projects/tree/master/1D-Heat_equation).
 
-Report is written in rmarkdown and can be found [here](https://github.com/angel-sarmiento/ROM-Projects/blob/master/1D-Heat_equation/reports/pod-rom-1d-heat-equation.html). It has gifs!
+Report is written in rmarkdown and can be found [here](https://github.com/angel-sarmiento/ROM-Projects/blob/master/1D-Heat_equation/reports/pod-rom-1d-heat-equation.html). It has gifs like this one!
+
+![](https://github.com/angel-sarmiento/ROM-Projects/blob/master/1D-Heat_equation/python/images/mu_plot_1.gif)
 
 
 ### Key Findings
