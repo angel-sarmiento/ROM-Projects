@@ -1,4 +1,6 @@
-## Modeling the 1D Heat/Diffusion Equation using a Reduced-Order Model
+# Modeling the 1D Heat/Diffusion Equation using a Reduced-Order Model
+By: Angel Sarmiento
+
 ## Introduction
 
 In this work is a view of a subject that is a bit of a passion of mine as of late. 
