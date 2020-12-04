@@ -41,7 +41,7 @@ library(tidyverse)
 
 ## Introduction
 
-
+|       In this work is a view of a subject that is a bit of a passion of mine as of late. This subject is Model-Order Reduction and the application of this subject on the 1-Dimensional representation of the heat/diffusion equation. The primary methodology of this work is the creation of a reduced-basis representation of this equation, that is then mapped to the full order basis and displaying the metrics like accuracy and computation cost associated with this action. This report details the main ideas behind the mathematics involved in solving a time-depending partial differential equation, the mathematics involved in applying methods like the Proper Orthogonal Decomposition using the singular value decomposition on the resulting state vectors, and the resulting analyses done to understand relationships between parameter and reduced-order basis selection. The entire set of scripts are written in python with all of the code, images, and resulting snapshot matrix data available [here](https://github.com/angel-sarmiento/ROM-Projects/tree/master/1D-Heat_equation).
 
 
 
@@ -100,7 +100,7 @@ kableExtra::kable(mu_mod, format = "html") %>%
 Table 1. Comparison of ROMs with different values of $\mu$
 \end{center}
 
-|       All of these seem to have similar errors to each other, but unfortunately none of these save time over the FOM computation. This may be due to the method used to calculate the reverse-projection of the ROM, which may be slower in 1-D cases where the FOM can be calculated very quickly. Although the RMSEs are relatively similar, some of the mu values yield faster computations for the ROM. The ROM does not perform well at higher values of $\mu$. This might be able to be fixed by using a different value for mu in the snapshot matrix. For the rest of this analysis, we will stick with the $\mu$ value of 0.4 since it performs well and has similar accuracy to the original ROM. The plots below show these models in the same way as above, with our new chosen mu value highlighted in red.  
+|       All of these seem to have similar errors to each other, but unfortunately none of these save time over the FOM computation. This may be due to the method used to calculate the reverse-projection of the ROM, which may be slower in 1-D cases where the FOM can be calculated very quickly. Although the RMSEs are relatively similar, some of the mu values yield faster computations for the ROM. The ROM does not perform well at higher values of $\mu$. This might be able to be fixed by using a different value for mu in the snapshot matrix. For the rest of this analysis, we will stick with the $\mu$ value of 0.4 since it performs well and has similar accuracy to the original ROM. The plots below show these models in the same way as above, with our new chosen mu value highlighted in red. The code for these plots is [here](https://github.com/angel-sarmiento/ROM-Projects/blob/master/1D-Heat_equation/python/mu_plots.py)  
 
 
 ```{r Comparison of Models with different Mu Values, fig.align='default', out.height='45%', out.width='33%',  fig.show='hold'}
@@ -125,7 +125,7 @@ knitr::include_graphics('../python/images/pod_bar.png')
 
 ```
 
-|       Running the algorithm yield increasingly impressive results that can be seen similarly to the way view above. This way we can see visually how closely these ROMs match the FOM, despite having a fraction of the dimensions to work with. The plots are shown below, the highest accuracy shown in blue. 
+|       Running the algorithm yield increasingly impressive results that can be seen similarly to the way view above. This way we can see visually how closely these ROMs match the FOM, despite having a fraction of the dimensions to work with. The plots are shown below, the highest accuracy shown in blue. The code for these plots is [here](https://github.com/angel-sarmiento/ROM-Projects/blob/master/1D-Heat_equation/python/pod_basis_plots.py)
 
 ```{r Comparison of Models with different POD bases, fig.align='default', out.height='50%', out.width='50%'}
 knitr::include_graphics(c('../python/images/pod_b1.gif',
@@ -138,12 +138,15 @@ The higher the number of dimensions included in the reduced-basis the more the R
 
 ## Conclusion
 
-|       In this investigation, the 1-Dimensional heat/diffusion equation was implemented in a full-order representation and compared with a reduced-order version. The FOM was solved using Backwards in Time Central in Space (BTCS) discretization and then the resulting state-space vector solutions for different time steps were combined in a snapshots matrix. The snapshots matrix was then projected onto a reduced basis using the Singular Value Decomposition. The basis was selected to maintain accuracy without having nearly as many dimensions as the FOM. In the first comparison, the first four dimensions of the singular values matrix were selected and then solved iteratively over the time period of 1 second divided into 129 sub-intervals. 
+|       In this investigation, the 1-Dimensional heat/diffusion equation was implemented in a full-order representation and compared with a reduced-order version. The FOM was solved using Backwards in Time Central in Space (BTCS) discretization and then the resulting state-space vector solutions for different time steps were combined in a snapshots matrix. The snapshots matrix was then projected onto a reduced basis using the Singular Value Decomposition. The basis was selected to maintain accuracy without having nearly as many dimensions as the FOM.  
+|       In the first comparison, the first four dimensions of the singular values matrix were selected and then solved iteratively over the time period of 1 second divided into 129 sub-intervals. The ROM did not perform better, nor did it perform faster, however this is most likely due to the nature of the problem. Larger dimensional problems like the 2D or 3D variants of the heat equation would most likely weigh heavier on the performance time of the FOM. Since the PDE was simple, the FOM solves rather quickly compared to the ROM counterpart that has to project back to the full dimensions using computationally slow techniques. A solution to this may be to find a more robust method for returning back to the full dimensional space like an autoencoder that learns from a set of snapshot matrices.  
+|       After this, the next step was to make comparisons to see how changing the diffusivity constant $\mu$ changed the performance of the models. This was performed iteratively and yielded some interesting results. First, the further $\mu$ was moved away from the initial value in the snapshot matrix, the worse the ROM performed. This makes sense given that the reduced order model is constructed from a reduced version of that snapshotted model. A more surprising result, is difference in time taken to compute the ROM with some $\mu$ values over others. This neither trended upward nor downward.  
+|       Finally, after selecting one of the better performing ROMs ($\mu = 0.4$) was selected to be compared using another selection of models, this time varying the number of dimensions of the reduced-basis. From this, it was seen that the higher number of dimensions in the reduced-basis, the more accurate the model was at replicating the FOM. For some reason, the models with higher dimensional reduced-basis performed their computations faster, while having much better accuracy. 
 
 
 ## Future Work
 
-
+For future work, there are some key things I would like to approach. First, I would like to apply these same methodologies with LU-factorization and Galerkin's method on higher dimensional systems described by PDEs. This could be more physics based simulations like the Navier Stokes equations. Next I would like to configure a more robust method for mapping the projected, reduced-order state vectors into the full-dimensional space. There are many novel approaches using autoencoders, cluster networks, etc. in everything from model-based to model-free approaches that seem useful and computationally fast. With more experience in these areas, I would like to move onto applications of these methodologies to real-time simulation approaches, where data is streamed to a model that reproduces a full-order solution based on a reduced-order approximation. 
 
 ## References 
 

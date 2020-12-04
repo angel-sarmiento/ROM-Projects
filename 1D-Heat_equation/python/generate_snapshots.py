@@ -12,6 +12,10 @@ import numpy as np
 from numpy import cos, sin, pi
 import pandas as pd
 
+#setting seed for reproducibility
+import random
+random.seed(123)
+
 #%% Defining the function
 
 def heat_snapshots():

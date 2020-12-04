@@ -7,6 +7,9 @@ from sklearn.metrics import mean_squared_error
 #import matplotlib.style as style, style.available
 from celluloid import Camera
 
+#setting seed for reproducibility
+import random
+random.seed(123)
 
 from compare_fom_rom import *
 
@@ -76,12 +79,18 @@ for l in range(len(phi_new)):
 
 
 # %% Comparing different POD bases with a table
-
+m_type_p = ['FOM', 'ROM', 'ROM_2', 'ROM_3', 'ROM_4']
+# this gets the number of dimensions from each of the models in the list phi_new
 n_dim = [128, (phi_new[0].shape)[1], (phi_new[1].shape)[1], (phi_new[2].shape)[1], (phi_new[3].shape)[1]]
+
+#this of course gets the RMSE of each model 
 p_error = [0, np.sqrt(mean_squared_error(fom_npod[0], rom_npod[0])), np.sqrt(mean_squared_error(fom_npod[1], rom_npod[1])), np.sqrt(mean_squared_error(fom_npod[2], rom_npod[2])), np.sqrt(mean_squared_error(fom_npod[3], rom_npod[3]))]
 
+# getting the time taken
+basis_time = [t_fom_npod[0], t_rom_npod[0], t_rom_npod[1], t_rom_npod[2], t_rom_npod[3]]
+
 # creating the table, not creating the time elapsed this time
-pod_table = pd.DataFrame({'model': m_type, 'n_dim': n_dim, 'RMSE': p_error})
+pod_table = pd.DataFrame({'model': m_type_p, 'n_dim': n_dim, 'RMSE': p_error, 'time': basis_time})
 pod_table.to_csv('data/pod_new_bases.csv', index = False, encoding='utf-8')
 
 
