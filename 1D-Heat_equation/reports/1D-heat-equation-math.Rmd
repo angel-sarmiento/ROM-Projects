@@ -21,10 +21,10 @@ where $\mu$ is known as the *diffusivity* of the medium. The boundary conditions
 
 
 \begin{align}
-  u_t &= \mu * u_{xx}   \qquad \text{for   } 0 <= x <= 1 \\
+  u_t &= \mu * u_{xx}   \qquad \text{for   } 0 \leq x \leq 1 \\
   u(0,t)   &= 1 \\
   u_x(1,t) &= 0 \\
-  u(x,0)   &= cos(3* \pi *x/2)
+  u(x,0)   &= \cos(3* \pi *x/2)
 \end{align}
 
 
